@@ -2,6 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { RsUsersModule } from 'src/resource/rs-users/rs-users.module';
+import { DbConfigModule } from 'src/core/db-config.module';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -15,6 +17,8 @@ describe('AuthService', () => {
           secret: 'jjsbjsaknjsksjbdksk',
           signOptions: { expiresIn: '6h' },
         }),
+        RsUsersModule,
+        DbConfigModule,
       ],
     }).compile();
 
