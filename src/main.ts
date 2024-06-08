@@ -10,7 +10,7 @@ const corsOptions: CorsOptions = {
     const allowedOrigins = [
       'http://localhost:4200',
       'http://localhost:3000',
-      'https://sendspark-api-2qp7.onrender.com/',
+      'https://sendspark-api-2qp7.onrender.com',
     ];
 
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
