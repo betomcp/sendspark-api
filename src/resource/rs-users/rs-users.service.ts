@@ -14,10 +14,12 @@ export class RsUsersService {
     return createdUser.save();
   }
 
-  findAll(skip: number, take: number, jobTitle?: string, companyName?: string) {
-    const query = { jobTitle: undefined, companyName: undefined };
-    if (jobTitle) query.jobTitle = jobTitle;
-    if (companyName) query.jobTitle = companyName;
+  findAll(skip = 0, take = 10, jobTitle?: string, company?: string) {
+    const query: any = {};
+    if (jobTitle) query.jobTitle = { $regex: new RegExp(jobTitle, 'i') };
+    if (company) {
+      query.company = { $regex: new RegExp(company, 'i') };
+    }
     return this.userModel.find(query).skip(skip).limit(take);
   }
 

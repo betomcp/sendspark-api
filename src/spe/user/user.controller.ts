@@ -5,10 +5,12 @@ import {
   Delete,
   UseGuards,
   Request,
+  Get,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from 'src/resource/rs-users/dto/create-user.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('user')
@@ -19,6 +21,20 @@ export class UserController {
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
+  }
+
+  @ApiQuery({ name: 'skip', required: false })
+  @ApiQuery({ name: 'take', required: false })
+  @ApiQuery({ name: 'jobTitle', required: false })
+  @ApiQuery({ name: 'company', required: false })
+  @Get('/find-all')
+  findAll(
+    @Query('skip') skip?: string,
+    @Query('take') take?: string,
+    @Query('jobTitle') jobTitle?: string,
+    @Query('company') company?: string,
+  ) {
+    return this.userService.findAll(+skip, +take, jobTitle, company);
   }
 
   @ApiBearerAuth()

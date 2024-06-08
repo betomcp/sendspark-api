@@ -26,6 +26,19 @@ export class UserService {
     }
   }
 
+  async findAll(
+    skip: number,
+    take: number,
+    jobTitle?: string,
+    companyName?: string,
+  ) {
+    try {
+      return this.rsUserService.findAll(skip, take, jobTitle, companyName);
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
+  }
+
   async delete(id: string) {
     try {
       return this.rsUserService.remove(id);
