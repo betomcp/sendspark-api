@@ -10,6 +10,7 @@ const corsOptions: CorsOptions = {
     const allowedOrigins = [
       'https://sendspark-api-2qp7.onrender.com',
       'https://betomcp.github.io/ui-sendspark-challenge',
+      'https://betomcp.github.io/ui-sendspark-challenge/',
     ];
 
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
