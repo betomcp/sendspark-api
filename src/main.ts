@@ -3,9 +3,26 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
+
+const corsOptions: CorsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = process.env.ALLOWED_ORIGINS;
+
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // enable cors options
+  app.enableCors(corsOptions);
 
   // configure the class validator library
   app.useGlobalPipes(
