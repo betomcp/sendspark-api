@@ -11,6 +11,7 @@ const corsOptions: CorsOptions = {
       'https://sendspark-api-2qp7.onrender.com',
       'https://betomcp.github.io/ui-sendspark-challenge',
       'https://betomcp.github.io/ui-sendspark-challenge/',
+      'https://betomcp.github.io',
     ];
 
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
