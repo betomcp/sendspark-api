@@ -21,6 +21,7 @@ async function bootstrap() {
     .setTitle('sendspark challenge API')
     .setDescription('docs')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
