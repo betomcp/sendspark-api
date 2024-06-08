@@ -6,10 +6,11 @@ import { RsUsersModule } from 'src/resource/rs-users/rs-users.module';
 import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './auth.controller';
 import { LocalAuthGuard } from './guards/local-auth.guard';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, LocalAuthGuard],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
   imports: [
     PassportModule,
     JwtModule.register({
@@ -18,6 +19,6 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
     }),
     RsUsersModule,
   ],
-  exports: [AuthService],
+  exports: [AuthService, JwtStrategy],
 })
 export class AuthModule {}
