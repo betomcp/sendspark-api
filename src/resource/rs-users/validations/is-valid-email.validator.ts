@@ -19,6 +19,7 @@ export class IsValidEmailValidator implements ValidatorConstraintInterface {
     const splitRightSide = splitEmail[1].split('.');
     // verify if email has at least one dot after the @ with strings before and after
     if (splitRightSide.length < 2) return false;
+    if (splitRightSide[1].length == 0) return false;
 
     return true;
   }
