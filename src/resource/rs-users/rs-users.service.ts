@@ -22,7 +22,7 @@ export class RsUsersService {
   }
 
   findByEmail(email: string) {
-    return this.userModel.findOne({ workEmail: email });
+    return this.userModel.findOne({ workEmail: email }).lean().exec();
   }
 
   update(id: string, updateUserDto: UpdateUserDto) {
@@ -31,7 +31,7 @@ export class RsUsersService {
     });
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.userModel.deleteOne({ _id: id });
   }
 }

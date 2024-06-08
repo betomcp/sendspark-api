@@ -25,4 +25,12 @@ export class UserService {
       throw new InternalServerErrorException();
     }
   }
+
+  async delete(id: string) {
+    try {
+      return this.rsUserService.remove(id);
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
+  }
 }
